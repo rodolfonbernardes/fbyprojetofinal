@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Controle Financeiro Pessoal</title>
+
+    <style>
+        body{
+            font-family: "Lato";
+            font-size: 100%; 
+                overflow-y: scroll; 
+            font-family: sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #fefefe;
+        }
+        a{
+            text-decoration: none;
+            color: white; 
+        }
+        .app{
+            height: 100vh;
+        } 
+        .sidebar {
+            position: fixed;
+            width: 17em;
+            height: 100%;
+            top: 0;
+            overflow:hidden;
+            background-color: #19222a;
+            }
+        header{
+            background-color: #09f;
+            width: 100%;
+            display:block;
+            padding: 0.75em	0;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .sidebar-nav {
+            background-color: #19222a;
+            height: 100%;
+            font-weight: 400; 
+            font-size: 1.2em;
+            overflow: auto;
+            padding-bottom: 6em;
+            overflow: hidden;
+        }
+        ul{
+            list-style:none;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }       
+        li{
+            margin-left: 0;
+            padding-left: 0;
+            display:inline-block;
+            width: 100%;
+        }
+                
+        a{
+            color: rgba(255,255,255,0.9);
+            font-size: 0.75em;
+            padding: 1.05em	1em;
+            position: relative;
+            display:block;
+        }
+        .content{
+            display: inline-block;
+            color: black;
+            margin-left: 20em;
+            margin-top: 5em;
+            width: 70em;
+        }
+    </style>
+
+</head>
+<body>
+    <section class="app">
+        <aside class="sidebar">
+            <header>
+              Controle Financeiro
+            </header>
+          <nav class="sidebar-nav">
+            <ul>
+                <li>
+                <a href="/expenses"><i class="ion-ios-flame-outline"></i>Expenses</a>
+                </li>
+                <li>
+                <a href="/incomes"><i class="ion-ios-lightbulb-outline"></i>Incomes</a>
+                </li>
+                <li>
+                <a href="/expected-cash-flow"><i class="ion-ios-location-outline"></i>Expected Cash flow</a>
+                </li>
+                <li>
+                <a href="/realized-cash-flow"><i class="ion-ios-locked-outline"></i>Realized Cash flow</a>
+                </li>
+            </ul>
+          </nav>
+        </aside>
+        <aside class="content">
+            
+        </aside>
+      </section>
+</body>
+</html>

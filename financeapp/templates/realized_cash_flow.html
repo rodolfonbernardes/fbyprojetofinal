@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Realized Cash flow</title>
+    <style>
+      body{
+            font-family: "Lato";
+            font-size: 100%; 
+                overflow-y: scroll; 
+            font-family: sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #fefefe;
+        }
+        a{
+            text-decoration: none;
+            color: white; 
+        }
+        .app{
+            height: 100vh;
+        } 
+        .sidebar {
+            position: fixed;
+            width: 17em;
+            height: 100%;
+            top: 0;
+            overflow:hidden;
+            background-color: #19222a;
+            }
+        header{
+            background-color: #09f;
+            width: 100%;
+            display:block;
+            padding: 0.75em	0;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .sidebar-nav {
+            background-color: #19222a;
+            height: 100%;
+            font-weight: 400; 
+            font-size: 1.2em;
+            overflow: auto;
+            padding-bottom: 6em;
+            overflow: hidden;
+        }
+        ul{
+            list-style:none;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }       
+        li{
+            margin-left: 0;
+            padding-left: 0;
+            display:inline-block;
+            width: 100%;
+        }
+                
+        a{
+            color: rgba(255,255,255,0.9);
+            font-size: 0.75em;
+            padding: 1.05em	1em;
+            position: relative;
+            display:block;
+        }
+        .content{
+            display: inline-block;
+            color: black;
+            margin-left: 20em;
+            margin-top: 5em;
+            width: 70em;
+        }
+        .title { font-size: 35px }
+        article h1 { text-align: center; font-size: 30px; }
+        article section h2 { text-align: center; font-size: 20px; }
+        article section p { text-align: right; }
+        article section p span { font-size: 30px; }
+        .income { color: blue; }
+        .expenses { color: red; }
+
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        .balance { text-align: center; font-size: 30px; }
+        .positive_balance { color: blue; }
+        .negative_balance { color: red; }
+        hr { border-top: 5px solid black; }
+    </style>
+</head>
+<body>
+  <section class="app">
+    <aside class="sidebar">
+        <header>
+          Controle Financeiro
+        </header>
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="/expenses"><i class="ion-ios-flame-outline"></i>Expenses</a>
+            </li>
+            <li>
+            <a href="/incomes"><i class="ion-ios-lightbulb-outline"></i>Incomes</a>
+            </li>
+            <li>
+            <a href="/expected-cash-flow"><i class="ion-ios-location-outline"></i>Expected Cash flow</a>
+            </li>
+            <li>
+            <a href="/realized-cash-flow"><i class="ion-ios-locked-outline"></i>Realized Cash flow</a>
+            </li>
+        </ul>
+      </nav>
+    </aside>
+    <aside class="content">
+      {% for month in month_cashflow %}
+      <h1 class="title">Realized Cash flow</h1>
+      <article>
+          <h1>{{month.month}}</h1>
+          <section>
+              <h2>Incomes</h2>
+              <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Classification</th>
+                    <th>Value</th>
+                </tr>
+                  {% for income in month.incomes %}
+                    <tr>
+                        <td>{{income.description}}</td>
+                        <td>{{income.classification}}</td>
+                        <td>{{income.value}}</td>
+                    </tr>
+                  {% endfor %}
+              </table>
+              <p>TOTAL INCOMES: <span class="income">+{{month.income_total}}</span></p>
+          </section>
+          <section>
+              <h2>Expenses</h2>
+              <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Classification</th>
+                    <th>Value</th>
+                </tr>
+                  {% for expense in month.expenses %}
+                    <tr>
+                        <td>{{expense.description}}</td>
+                        <td>{{expense.classification}}</td>
+                        <td>{{expense.value}}</td>
+                    </tr>
+                  {% endfor %}
+              </table>
+              <p>TOTAL EXPENSES: <span class="expenses">-{{month.expenses_total}}</span></p>
+          </section>
+      </article>
+      {% if month.balance < 0 %}
+          <p class="balance">MONTH BALANCE: <span class="negative_balance">{{month.balance}}</span></p>
+      {% else %}
+          <p class="balance">MONTH BALANCE: <span class="positive_balance">{{month.balance}}</span></p>
+      {% endif %}
+  
+  
+      <hr>
+  {% endfor %}
+    </aside>
+  </section>
+</body>
+</html>
+
